@@ -161,8 +161,7 @@
 
         this.videoData = {
             name: (opts.name > '') ? opts.name : defaults.name,
-            description: (opts.description > '') ? opts.description : defaults.description,
-            'privacy.view': opts.private ? 'unlisted' : 'anybody'
+            description: (opts.description > '') ? opts.description : defaults.description
         }
 
         if (!(this.url = opts.url)) {
@@ -345,16 +344,16 @@
     me.prototype.onGetMetadata_ = function(e, video_id) {
         // Get the video location (videoId)
         if (e.target.status < 400) {
-            if (e.target.response) {
+            //if (e.target.response) {
                 // add the returned metadata to the metadata array
-                var meta = JSON.parse(e.target.response)
+              //  var meta = JSON.parse(e.target.response)
                     // get the new index of the item
-                var index = this.metadata.push(meta) - 1
+                var index = this.metadata.push({video_id:video_id}) - 1
                     // call the complete method
                 this.onComplete(video_id, index)
-            } else {
-                this.onCompleteError_(e)
-            }
+            //} else {
+           //     this.onCompleteError_(e)
+           // }
         }
     }
 
